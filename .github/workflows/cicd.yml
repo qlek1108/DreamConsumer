@@ -50,7 +50,7 @@ jobs:
       # 압축한 프로젝트를 S3로 전송합니다.
       - name: Upload to S3
         run: >
-          aws deploy create-deployment --application-name dreamconsumer
+          aws deploy create-deployment --application-name consumptionplanner
           --deployment-config-name CodeDeployDefault.AllAtOnce
-          --deployment-group-name dreamconsumer-group
+          --deployment-group-name consumptionplanner-group
           --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=practice-deploy.zip
