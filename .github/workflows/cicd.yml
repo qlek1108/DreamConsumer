@@ -34,7 +34,6 @@ jobs:
         run: zip -r ./practice-deploy.zip ./consumptionplanner
         shell: bash
 
-
       # Access Key와 Secret Access Key를 통해 권한을 확인합니다.
       # 아래 코드에 Access Key와 Secret Key를 직접 작성하지 않습니다.
       - name: Configure AWS credentials
