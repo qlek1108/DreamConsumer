@@ -46,6 +46,8 @@ jobs:
       - name: Add execute permission to gradlew
         run: chmod +x gradlew
 
+
+
       # 압축한 프로젝트를 S3로 전송합니다.
       - name: Upload to S3
         run: >
