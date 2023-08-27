@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 env:
-  S3_BUCKET_NAME: dreamconsumer
+  S3_BUCKET_NAME: be-0-name
 
 jobs:
   build:
@@ -22,8 +22,8 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-      - name: Add permission
-        run: chmod +x gradlew
+      - name : Add permission
+        run : chmod +x gradlew
       - name: Build with Gradle
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
@@ -31,7 +31,7 @@ jobs:
 
       # build한 후 프로젝트를 압축합니다.
       - name: Make zip file
-        run: zip -r ./practice-deploy.zip ./consumptionplanner
+        run: zip -r ./practice-deploy.zip .
         shell: bash
 
       # Access Key와 Secret Access Key를 통해 권한을 확인합니다.
@@ -39,19 +39,10 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} # 등록한 Github Secret이 자동으로 불려옵니다.
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }} # 등록한 Github Secret이 자동으로 불려옵니다.
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # 등록한 Github Secret이 자동으로 불려옵니다.
           aws-region: ap-northeast-2
 
-      - name: Add execute permission to gradlew
-        run: chmod +x gradlew
-
-
-
       # 압축한 프로젝트를 S3로 전송합니다.
       - name: Upload to S3
-        run: >
-          aws deploy create-deployment --application-name consumptionplanner
-          --deployment-config-name CodeDeployDefault.AllAtOnce
-          --deployment-group-name consumptionplanner-group
-          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=practice-deploy.zip
+        run: aws s3 cp --region ap-northeast-2 ./practice-deploy.zip s3://$S3_BUCKET_NAME/practice-deploy.zip
