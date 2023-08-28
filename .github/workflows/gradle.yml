@@ -50,7 +50,7 @@ jobs:
       # CodeDeploy에게 배포 명령을 내립니다.
       - name: Code Deploy
         run: >
-          aws deploy create-deployment --application-name be-0-name
+          aws deploy create-deployment --application-name dreamconsumer
           --deployment-config-name CodeDeployDefault.AllAtOnce
-          --deployment-group-name be-0-name-group
+          --deployment-group-name dreamconsumer-group
           --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=practice-deploy.zip
