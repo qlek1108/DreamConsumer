@@ -23,10 +23,7 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
       - name: Grant execute permission for gradlew
-        run: |
-          # Use PowerShell to grant execute permission for gradlew
-          Set-ItemProperty -Path "$Env:USERPROFILE\IdeaProjects\consumptionplanner\gradlew" -Name IsReadOnly -Value $false
-        shell: pwsh
+        run: chmod +x $GITHUB_WORKSPACE/IdeaProjects/consumptionplanner/gradlew
       - name: Build with Gradle
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
