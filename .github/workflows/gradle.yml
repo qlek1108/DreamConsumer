@@ -22,31 +22,29 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-      - name: init with Gradle
-        uses: gradle/gradle-build-action@v2
-      - run: gradle init
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: 8.3
 
-          arguments: build
-
-      - name: Change directory to gradlew location
+      - name: Build with Gradle and print build result
         run: |
-            cd server/DreamConsumer-main
-            chmod +x gradlew
-            ./gradlew build -x test
-          shell: bash
+          cd server/DreamConsumer-main
+          chmod +x gradlew
+          ./gradlew build -x test
+        shell: bash
 
-      # 아래 부분의 chmod 명령어를 주석 처리 또는 제거합니다.
-      # - name: Add permission
-      #   run: chmod +x gradlew
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-        with:
-          arguments: build
 
+      - name: Check jar file
+        run: ls server/DreamConsumer-main/build/libs/
+        shell: bash
+
+
+      - name: Copy appspec.yml to current directory
+        run: |
+          cp server/DreamConsumer-main/appspec.yml .
+          cp -r server/DreamConsumer-main/scripts .
+        shell: bash
+
+      - name: Copy jar file to current directory
+        run: cp server/DreamConsumer-main/build/libs/*.jar .
+        shell: bash
 
 
       # build한 후 프로젝트를 압축합니다.
