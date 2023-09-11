@@ -1,6 +1,6 @@
 #!/bin/bash
 # 빌드 파일의 이름이 콘텐츠와 다르다면 다음 줄의 .jar 파일 이름을 수정하시기 바랍니다.
-BUILD_JAR=$(ls C:\Users\user\IdeaProjects\consumptionplanner\build\libs\demo-0.0.1-SNAPSHOT.jar)
+BUILD_JAR=$(ls C:\Users\user\IdeaProjects\DreamConsumer\DreamConsumer\server\DreamConsumer-main\gradle\wrapper\gradle-wrapper.jar)
 JAR_NAME=$(basename $BUILD_JAR)
 
 echo "> 현재 시간: $(date)" >> /home/ubuntu/action/deploy.log
