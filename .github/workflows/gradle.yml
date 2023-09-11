@@ -2,7 +2,8 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -23,17 +24,15 @@ jobs:
         with:
           java-version: '11'
 
-      - name: Make Gradlew executable
-        run: chmod +x ./server/DreamConsumer-main/gradlew
-        working-directory: ./DreamConsumer-main
+      - name: Make gradlew executable
+        run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./server/DreamConsumer-main/gradlew build
-        working-directory: ./DreamConsumer-main
+        run: ./gradlew build
 
-      - name: Create zip file
+      - name: Archive project
         run: zip -r ./practice-deploy.zip .
-        working-directory: ./DreamConsumer-main/build
+        shell: bash
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -45,9 +44,9 @@ jobs:
       - name: Upload to S3
         run: aws s3 cp --region ap-northeast-2 ./practice-deploy.zip s3://$S3_BUCKET_NAME/practice-deploy.zip
 
-      - name: CodeDeploy
-        run: |
-          aws deploy create-deployment --application-name consumptionplanner \
-            --deployment-config-name CodeDeployDefault.AllAtOnce \
-            --deployment-group-name consumptionplanner-group \
-            --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=practice-deploy.zip
+      - name: Code Deploy
+        run: >
+          aws deploy create-deployment --application-name consumptionplanner
+          --deployment-config-name CodeDeployDefault.AllAtOnce
+          --deployment-group-name consumptionplanner-group
+          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=practice-deploy.zip
