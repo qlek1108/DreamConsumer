@@ -26,14 +26,22 @@ jobs:
           distribution: 'adopt'
 
       - name: Prepare
-        run: ./server/prepare.sh
+        run: |
+          cd server # 서버 디렉토리로 이동
+          chmod +x prepare.sh # prepare.sh 파일에 실행 권한 부여
+          ./prepare.sh # prepare.sh 스크립트 실행
         shell: bash
 
       - name: Build with Gradle
-        run: ./server/gradlew build
+        run: |
+          cd server # 서버 디렉토리로 이동
+          ./gradlew build # gradlew build 실행
 
       - name: Make zip file
-        run: zip -r ./server/practice-deploy.zip .
+        run: |
+          cd server # 서버 디렉토리로 이동
+          zip -r ./practice-deploy.zip . # practice-deploy.zip 생성
+        shell: bash
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -43,10 +51,13 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 ./server/practice-deploy.zip s3://$S3_BUCKET_NAME/practice-deploy.zip
+        run: |
+          cd server # 서버 디렉토리로 이동
+          aws s3 cp --region ap-northeast-2 ./practice-deploy.zip s3://$S3_BUCKET_NAME/practice-deploy.zip
 
       - name: Code Deploy
-        run: >
+        run: |
+          cd server # 서버 디렉토리로 이동
           aws deploy create-deployment --application-name consumptionplanner
           --deployment-config-name CodeDeployDefault.AllAtOnce
           --deployment-group-name consumptionplanner-group
