@@ -27,7 +27,10 @@ jobs:
       - run: gradle init
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: 8.3
 
+          arguments: build
       - name: Change directory to gradlew location
         run: cd ./server/DreamConsumer-main
       # 아래 부분의 chmod 명령어를 주석 처리 또는 제거합니다.
