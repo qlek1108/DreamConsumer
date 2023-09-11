@@ -26,7 +26,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Prepare
-        run: ./prepare.sh
+        run: ./server/prepare.sh
         shell: bash
 
       - name: Build with Gradle
