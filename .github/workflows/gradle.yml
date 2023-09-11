@@ -31,8 +31,14 @@ jobs:
           gradle-version: 8.3
 
           arguments: build
+
       - name: Change directory to gradlew location
-        run: cd ./server/DreamConsumer-main
+        run: |
+            cd server/DreamConsumer-main
+            chmod +x gradlew
+            ./gradlew build -x test
+          shell: bash
+
       # 아래 부분의 chmod 명령어를 주석 처리 또는 제거합니다.
       # - name: Add permission
       #   run: chmod +x gradlew
