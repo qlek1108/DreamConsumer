@@ -25,6 +25,9 @@ jobs:
           java-version: 11
           distribution: 'adopt'
 
+      - name: Change directory to project root
+        run: cd ./server/DreamConsumer-main
+
       - name: Make Gradlew executable
         run: chmod +x gradlew
 
