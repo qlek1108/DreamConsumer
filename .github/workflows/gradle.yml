@@ -26,7 +26,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Change directory to gradlew location
-        run: cd ./server
+        run: cd ./server/DreamConsumer-main
 
       - name: Make Gradlew executable
         run: chmod +x gradlew
