@@ -25,7 +25,8 @@ jobs:
           distribution: 'temurin'
 
       - name: Change directory to gradlew location
-        run: cd C:\Users\user\IdeaProjects\DreamConsumer\DreamConsumer\server\DreamConsumer-main
+        run: cd C:/Users/user/IdeaProjects/DreamConsumer/DreamConsumer/server/DreamConsumer-main
+
 
       - name: Build with Gradle
         run: ./gradlew build
