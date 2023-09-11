@@ -25,17 +25,15 @@ jobs:
           java-version: 11
           distribution: 'adopt'
 
-      - name: Change directory to project root
-        run: cd ./server/DreamConsumer-main
-
-      - name: Make Gradlew executable
-        run: chmod +x gradlew
+      - name: Prepare
+        run: ./prepare.sh
+        shell: bash
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./server/gradlew build
 
       - name: Make zip file
-        run: zip -r ./practice-deploy.zip .
+        run: zip -r ./server/practice-deploy.zip .
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -45,7 +43,7 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 ./practice-deploy.zip s3://$S3_BUCKET_NAME/practice-deploy.zip
+        run: aws s3 cp --region ap-northeast-2 ./server/practice-deploy.zip s3://$S3_BUCKET_NAME/practice-deploy.zip
 
       - name: Code Deploy
         run: >
