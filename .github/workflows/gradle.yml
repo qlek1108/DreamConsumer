@@ -22,6 +22,12 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
+      - name: init with Gradle
+        uses: gradle/gradle-build-action@v2
+      - run: gradle init
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@v2
+
       - name: Change directory to gradlew location
         run: cd ./server/DreamConsumer-main
       # 아래 부분의 chmod 명령어를 주석 처리 또는 제거합니다.
@@ -31,6 +37,8 @@ jobs:
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: build
+
+
 
       # build한 후 프로젝트를 압축합니다.
       - name: Make zip file
