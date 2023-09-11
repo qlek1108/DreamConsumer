@@ -25,7 +25,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Change directory to gradlew location
-        run: cd .server
+        run: cd ./server
 
 
       - name: Build with Gradle
