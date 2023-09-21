@@ -8,14 +8,14 @@
 #    url: jdbc:h2:~/test9  # H2 접속 정보
 #    username: sa  # H2 접속 시 입력할 username 정보 (원하는 것으로 입력)
 #    password:  # H2 접속 시 입력할 password 정보 (원하는 것으로 입력)
-#  jpa:
-#    hibernate:
-#      ddl-auto: create-drop
-#    show-sql: true
-#    generate-ddl: true
-#  mvc:
-#    pathmatch:
-#      matching-strategy: ant_path_matcher
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    generate-ddl: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
 ---
 spring:
