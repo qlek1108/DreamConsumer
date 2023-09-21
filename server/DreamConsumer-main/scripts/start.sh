@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 PROJECT_ROOT="C:/Users/user/IdeaProjects/DreamConsumer/DreamConsumer/server/DreamConsumer-main/gradle/wrapper"
-JAR_FILE="$PROJECT_ROOT/demo-0.0.1-SNAPSHOT.jar"
+JAR_FILE="$PROJECT_ROOT/gradle-wrapper.jar"
 
 APP_LOG="$PROJECT_ROOT/application.log"
 ERROR_LOG="$PROJECT_ROOT/error.log"
