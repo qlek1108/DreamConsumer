@@ -39,7 +39,7 @@ public class User {
     private boolean emailAcceptance;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "user_states")  // 변경된 부분
+    @Column(name = "user_status")  // 변경된 부분
     private UserStatus userStatus = UserStatus.USER_ACTIVE;
 
     public enum UserStatus {
