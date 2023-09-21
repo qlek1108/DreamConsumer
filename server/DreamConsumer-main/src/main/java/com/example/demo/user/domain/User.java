@@ -1,4 +1,4 @@
-package com.example.demo.user.entity;
+package com.example.demo.user.domain;
 
 import lombok.*;
 import javax.persistence.*;
@@ -17,22 +17,29 @@ import java.util.List;
 public class User {
     @NotNull
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private long userId;
 
+    @Column(name = "name")
     private String userName;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "job")
     private String job;
 
+    @Column(name = "age")
     private int age;
 
+    @Column(name = "email_acceptance")
     private boolean emailAcceptance;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "user_status")
+    @Column(name = "user_states")  // 변경된 부분
     private UserStatus userStatus = UserStatus.USER_ACTIVE;
 
     public enum UserStatus {
@@ -47,11 +54,13 @@ public class User {
             this.status = status;
         }
     }
-
+    @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    private LocalDateTime modifiedAt = LocalDateTime.now();
+    @Column(name = "updated_at")  // 변경된 부분
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
+    @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
     @ElementCollection(fetch = FetchType.EAGER)
