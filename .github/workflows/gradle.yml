@@ -68,7 +68,7 @@ jobs:
       # CodeDeploy에게 배포 명령을 내립니다.
       - name: Code Deploy
         run: >
-          aws deploy create-deployment --application-name consumptionplanner
+          aws deploy create-deployment --application-name d_9.21
           --deployment-config-name CodeDeployDefault.AllAtOnce
-          --deployment-group-name consumptionplanner-group
+          --deployment-group-name d_9.21_group
           --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=practice-deploy.zip
