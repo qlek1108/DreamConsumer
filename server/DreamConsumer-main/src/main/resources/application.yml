@@ -4,14 +4,7 @@ spring:
       ddl-auto: create-drop
     show-sql: true
     generate-ddl: true
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://database-3.coocppqxryzy.ap-northeast-2.rds.amazonaws.com:3306/dream?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: database_dream
-    password: ${{ secrets.AWS_DB_PASSWORD }}  # 실제 암호로 변경해야 합니다
+
 
 ---
 spring:
