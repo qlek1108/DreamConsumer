@@ -2,7 +2,7 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "test" ]
+    branches: [ "jihee" ]
 
 permissions:
   contents: read
