@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/item")
+@RequestMapping("/items")
 @Slf4j
 
 public class ItemController {
@@ -27,12 +27,12 @@ public class ItemController {
     private final ItemService itemService;
     private final ItemMapper itemMapper;
 
-    @PostMapping("/post")
+    @PostMapping("")
     public ResponseEntity saveItem(@RequestBody ItemRequestDto itemRequestDto){
        ItemResponseDto itemResponseDto = Item.EntityToItemResponse(itemService.savaItem(itemMapper.itemRequestDtoToItem(itemRequestDto)));
        return new ResponseEntity(itemResponseDto, HttpStatus.CREATED);
     }
-    @GetMapping("/get")
+    @GetMapping("")
     public ResponseEntity getAll(@PageableDefault(size=20, sort="id",direction = Sort.Direction.DESC) Pageable pageable){
         API<List<ItemResponseDto>> listAPI = itemService.getAllItems(pageable);
         return new ResponseEntity(listAPI, HttpStatus.ACCEPTED);
