@@ -1,0 +1,31 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    generate-ddl: true
+
+mail:
+  address:
+    admin: admin@gmail.com
+
+jwt:
+  key : ${JWT_SECRET_KEY}
+  access-token-expiration-minutes : 30
+  refresh-token-expiration-minutes : 420
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+---
+spring:
+  profiles:
+    active: server
+---
+spring:
+  profiles:
+    active: local
