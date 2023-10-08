@@ -11,8 +11,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,13 +39,14 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override // 인증 성공 시 호출
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
-                                            FilterChain chain, Authentication authResult) {
+                                            FilterChain chain, Authentication authResult) throws ServletException, IOException {
         User user = (User) authResult.getPrincipal(); // AuthenticationManager 내부 인증 성공 -> 인증된 Authentication 객체 생성
         String accessToken = delegateAccessToken(user);
         String refreshToken = delegateRefreshToken(user);
 
         response.setHeader("Authorization", "Bearer " + accessToken); // Bearer = JWT or OAuth 토큰
         response.setHeader("Refresh", refreshToken);
+        this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);
     }
 
     private String delegateAccessToken(User user) {

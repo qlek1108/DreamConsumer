@@ -8,15 +8,5 @@ import lombok.Getter;
 public class UserResponseDto {
     private long userId;
 
-    private String userName;
-
-    private String email;
-
-    private String password;
-
-    private String job;
-
-    private int age;
-
-    private boolean emailAcceptance;
+    private String tier = "구현 중";
 }

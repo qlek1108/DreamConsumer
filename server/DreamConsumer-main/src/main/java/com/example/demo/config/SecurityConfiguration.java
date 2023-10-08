@@ -1,6 +1,8 @@
 package com.example.demo.config;
 
 import com.example.demo.auth.filter.JwtAuthenticationFilter;
+import com.example.demo.auth.handler.UserAuthenticationFailureHandler;
+import com.example.demo.auth.handler.UserAuthenticationSuccessHandler;
 import com.example.demo.auth.jwt.JwtTokenizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -77,6 +79,8 @@ public class SecurityConfiguration {
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
             jwtAuthenticationFilter.setFilterProcessesUrl("/users/sign-in");
+            jwtAuthenticationFilter.setAuthenticationSuccessHandler(new UserAuthenticationSuccessHandler()); // 404 오류 수정
+            jwtAuthenticationFilter.setAuthenticationFailureHandler(new UserAuthenticationFailureHandler());
             builder.addFilter(jwtAuthenticationFilter);
         }
     }
