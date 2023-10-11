@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://database-1.coocppqxryzy.ap-northeast-2.rds.amazonaws.com:3306/database-1?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: database_dream
+    username: database-1
     password: ${{ secrets.AWS_DB_PASSWORD }}  # 실제 암호로 변경해야 합니다
   jpa:
     hibernate:
