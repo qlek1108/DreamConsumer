@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://database-1.coocppqxryzy.ap-northeast-2.rds.amazonaws.com:3306/database-1?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: database-1
-    password: ${{ secrets.JWT_SECRET_KEY }}  # 실제 암호로 변경해야 합니다
+    url: jdbc:mysql://database-2.coocppqxryzy.ap-northeast-2.rds.amazonaws.com:3306/database-2?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: admin
+    password: ${{ secrets.JWT_SECRET_KEY }}  # 데이터베이스 암호로 변경해야 합니다
   jpa:
     hibernate:
       ddl-auto: validate
