@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 env:
-  S3_BUCKET_NAME: dreamconsumer
+  S3_BUCKET_NAME: dreamconsumer-github-action-s3-bucket
 
 jobs:
   build:
