@@ -9,6 +9,8 @@ permissions:
 
 env:
   S3_BUCKET_NAME: dreamconsumer-github-action-s3-bucket
+  CODE_DEPLOY_APPLICATION_NAME: dreamconsumer_deploy
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dreamconsumer-deploy-group
 
 jobs:
   build:
@@ -68,7 +70,8 @@ jobs:
       # CodeDeploy에게 배포 명령을 내립니다.
       - name: Code Deploy
         run: >
-          aws deploy create-deployment --application-name d_9.21
-          --deployment-config-name CodeDeployDefault.AllAtOnce
-          --deployment-group-name d_9.21_group
+          aws deploy create-deployment 
+          --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} 
+          --deployment-config-name CodeDeployDefault.AllAtOnce 
+          --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} 
           --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=practice-deploy.zip
