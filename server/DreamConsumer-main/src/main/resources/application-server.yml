@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://dreamconsumer-db.c3r6azftukjh.ap-northeast-2.rds.amazonaws.com:3306/dreamconsumer?serverTimezone=Asia/Seoul
     username: admin
-    password: ${{ secrets.DB_PASSWORD }}  # 데이터베이스 암호로 변경해야 합니다
+    password: 12341234  # 데이터베이스 암호로 변경해야 합니다
   jpa:
     hibernate:
       ddl-auto: validate
