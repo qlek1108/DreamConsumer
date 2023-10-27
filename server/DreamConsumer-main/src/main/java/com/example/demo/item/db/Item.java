@@ -2,7 +2,6 @@ package com.example.demo.item.db;
 
 
 import com.example.demo.item.base.BaseEntity;
-import com.example.demo.item.model.ItemRequestDto;
 import com.example.demo.item.model.ItemResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,11 +26,11 @@ public class Item extends BaseEntity {
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
-    @Column(name = "userId", nullable = false)
+    @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Column(name = "item_name", nullable = false)
-    private String itemName;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(name = "price", nullable = false)
     private BigDecimal price;
@@ -39,49 +38,59 @@ public class Item extends BaseEntity {
     @Column(name = "current_money", nullable = false)
     private BigDecimal currentMoney;
 
-    @Column(name = "image_path")
-    private String imagePath;
+    @Column(name = "unit_amount", nullable = false)
+    private BigDecimal unitAmount;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "cycle", nullable = false)
+    private Cycle cycle;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "item_status", nullable = false)
+    private ItemStatus itemStatus = ItemStatus.ITEM_ACTIVE;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "item_progress", nullable = false)
+    private ItemProgress itemProgress = ItemProgress.ITEM_IN_PROGRESS;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(name = "bookmark")
+    private boolean bookmark = false;
 
     @Column(name = "group_purchase", nullable = false)
     private Boolean groupPurchase = false;
 
-    @Column(name = "money_auto_update", nullable = false)
-    private Boolean moneyAutoUpdate;
+    @Column(name = "auto_update", nullable = false)
+    private Boolean autoUpdate = false;
 
-    @Column(name = "auto_update_money_amount")
-    private BigDecimal autoUpdateMoneyAmount;
+    @Column(name = "item_url")
+    private String itemUrl;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tag")
-    private Tags tag;
+    public enum Cycle {
+        DAILY, WEEKLY, MONTHLY
+    }
 
-    @Column(name = "Uri")
-    private String itemUri;
+    public enum ItemStatus {
+        ITEM_ACTIVE, ITEM_DELETED
+    }
 
-
-    public enum Tags {
-        HOUSE("집"), CAR("차");
-
-        private String element;
-
-        Tags(String element) {
-            this.element = element;
-        }
+    public enum ItemProgress {
+        ITEM_IN_PROGRESS, ITEM_COMPLETED
     }
 
     public static ItemResponseDto EntityToItemResponse(Item item) {
         return ItemResponseDto.builder().
                 id(item.getId())
-                .userId(item.getUserId())
-                .itemName(item.getItemName())
+                .name(item.getName())
+                .imageUrl(item.getImageUrl())
                 .price(item.getPrice())
                 .currentMoney(item.getCurrentMoney())
-                .imagePath(item.getImagePath())
-                .groupPurchase(item.getGroupPurchase())
-                .moneyAutoUpdate(item.getMoneyAutoUpdate())
-                .autoUpdateMoneyAmount(item.getAutoUpdateMoneyAmount())
-                .tag(item.getTag().element)
-                .itemUri(item.getItemUri()).build();
+                .cycle(item.getCycle())
+                .unitAmount(item.getUnitAmount())
+                .bookmark(item.isBookmark())
+                .build();
     }
 
 
