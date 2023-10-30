@@ -1,10 +1,12 @@
-package com.example.demo.item.service;
+package com.example.item.service;
 
-import com.example.demo.item.db.Item;
-import com.example.demo.item.db.ItemRepository;
-import com.example.demo.item.model.ItemResponseDto;
-import com.example.demo.item.pagenation.API;
-import com.example.demo.item.pagenation.Pagination;
+
+import com.example.item.db.Item;
+import com.example.item.db.ItemRepository;
+import com.example.item.model.ItemResponseDto;
+import com.example.item.pagenation.API;
+import com.example.item.pagenation.Pagination;
+import com.example.prac.db.PracticeModel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -48,8 +50,9 @@ public class ItemService {
 
     @Transactional
     public void deleteOneItem(Long itemId){
-        Item item = getOneItem(itemId);
+        Item item =  itemRepository.findById(itemId).orElseThrow(()->new NoSuchElementException());
         item.setDeleted(true);
-        savaItem(item);
+        item.setDeletedTime(System.currentTimeMillis());
+        itemRepository.save(item);
     }
 }

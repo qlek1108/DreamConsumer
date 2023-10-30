@@ -1,4 +1,4 @@
-package com.example.demo.item.base;
+package com.example.item.base;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -35,4 +35,9 @@ public class BaseEntity  {
 
     @Column(nullable = false)
     private Boolean deleted = false;
+
+    @Column(nullable = true)
+    private Long deletedTime;
+
+
 }
