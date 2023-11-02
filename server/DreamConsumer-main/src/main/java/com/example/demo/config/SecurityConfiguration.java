@@ -61,7 +61,8 @@ public class SecurityConfiguration {
         corsConfiguration.setAllowedMethods(Arrays.asList("POST", "GET", "PATCH", "DELETE", "OPTIONS"));
         corsConfiguration.setExposedHeaders(Arrays.asList("Access-Control-Allow-Origin",
                 "Access-Control-Allow-Methods",
-                "Access-Control-Allow-Headers"));
+                "Access-Control-Allow-Headers",
+                "Authorization", "Refresh")); // JWT 토큰 헤더 포함
         corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Accept", "Content-Type"));
         corsConfiguration.setAllowCredentials(true);
 
