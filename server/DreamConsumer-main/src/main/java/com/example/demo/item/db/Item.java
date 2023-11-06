@@ -1,8 +1,9 @@
-package com.example.demo.item.db;
+package com.example.item.db;
 
 
-import com.example.demo.item.base.BaseEntity;
-import com.example.demo.item.model.ItemResponseDto;
+
+import com.example.item.base.BaseEntity;
+import com.example.item.model.ItemResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ import java.math.BigDecimal;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Where(clause = "deleted = false")
+
 public class Item extends BaseEntity {
 
     @Id

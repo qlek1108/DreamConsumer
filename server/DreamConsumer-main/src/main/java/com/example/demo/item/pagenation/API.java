@@ -1,4 +1,4 @@
-package com.example.demo.item.pagenation;
+package com.example.item.pagenation;
 
 import lombok.*;
 

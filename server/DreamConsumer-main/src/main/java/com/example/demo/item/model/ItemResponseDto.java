@@ -1,6 +1,7 @@
-package com.example.demo.item.model;
+package com.example.item.model;
 
-import com.example.demo.item.db.Item;
+
+import com.example.item.db.Item;
 import lombok.*;
 
 import java.math.BigDecimal;

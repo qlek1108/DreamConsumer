@@ -1,6 +1,7 @@
-package com.example.demo.item.model;
+package com.example.item.model;
 
-import com.example.demo.item.db.Item;
+
+import com.example.item.db.Item;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,22 +22,16 @@ public class ItemRequestDto {
     private Long userId;
 
     @NotNull
-    private String itemName;
-
-    private File image;
+    private String name;
 
     @NotNull
     private BigDecimal price;
-
-    // 태그 추가해야 함
-
-    private String itemUrl;
 
     @NotNull
     private BigDecimal currentMoney;
 
     @NotNull
-    @Pattern(regexp = "^(daily|weekly|monthly)$", message = "Invalid cycle type")
+    @Pattern(regexp = "^(DAILY|WEEKLY|MONTHLY)$", message = "Invalid cycle type")
     private Item.Cycle cycle;
 
     @NotNull

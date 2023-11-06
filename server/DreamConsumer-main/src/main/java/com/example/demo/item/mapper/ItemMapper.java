@@ -1,10 +1,10 @@
-package com.example.demo.item.mapper;
+package com.example.item.mapper;
 
-import com.example.demo.item.db.Item;
-import com.example.demo.item.model.ItemPatchDto;
-import com.example.demo.item.model.ItemRequestDto;
+
+import com.example.item.db.Item;
+import com.example.item.model.ItemPatchDto;
+import com.example.item.model.ItemRequestDto;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
